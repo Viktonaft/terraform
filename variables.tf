@@ -5,7 +5,7 @@ variable "region" {
 }
 
 variable "key_name" {
-  description = "The name of the AWS key"
+  description = "The name of the AWS key pair"
   type        = string
   default     = "terraform_ec2_key"
 }
