@@ -116,6 +116,21 @@ module "database" {
   depends_on = [aws_key_pair.key]
 }
 
+module "database2" {
+  source                      = "./modules/ec2-instance"
+  ami                         = var.ami
+  instance_type               = var.instance_type
+  subnet_id                   = module.my_vpc.private_subnet_ids[0]
+  security_groups_name        = module.sg-internal.sg_id
+  key_name                    = try(aws_key_pair.key[0].key_name, var.key_name)
+  associate_public_ip_address = false
+  instance_name               = "database2"
+  instance_role               = "db"
+  instance_env                = "production"
+
+  depends_on = [aws_key_pair.key]
+}
+
 output "bastion_host_public_ip" {
   value = module.bastion_host.instance_public_ip
 }
@@ -133,4 +148,7 @@ output "web_host_private_ip_2" {
 }
 output "database_private_ip" {
   value = module.database.instance_private_ip
+}
+output "database2_private_ip" {
+  value = module.database2.instance_private_ip
 }
