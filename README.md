@@ -20,7 +20,6 @@ Use S3 backend to store terraform.tfstate file
     region         = "us-east-2"
     }
 ```
-
 To check if SSH Key exists use 
 ```
 data "external" "check_key" {
