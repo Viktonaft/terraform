@@ -55,7 +55,7 @@ module "<Add Module name>" {
   source                      = "./modules/ec2-instance"
   ami                         = var.ami
   instance_type               = var.instance_type
-  subnet_id                   = module.my_vpc.public_subnet_ids[0]
+  subnet_id                   = module.my_vpc.public_subnets_ids[0]
   security_groups_name        = module.sg-external.sg_id
   key_name                    = try(aws_key_pair.key[0].key_name, var.key_name)
   associate_public_ip_address = true

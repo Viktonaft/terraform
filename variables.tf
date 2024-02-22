@@ -27,4 +27,8 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
-
+variable "cluster_name" {
+  description = "The instance type of the EC2 instance"
+  type        = string
+  default     = "argoCluster"
+}
